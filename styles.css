@@ -1,0 +1,211 @@
+/* Base Styles */
+body {
+    background: linear-gradient(135deg, #FFF0F5, #FFE6EE, #FFD6E7);
+    color: #6D4C5A;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Header Styles */
+header {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 40px 20px;
+    border-radius: 15px;
+    margin: 30px auto;
+    box-shadow: 0 4px 15px rgba(236, 150, 180, 0.2);
+    width: 85%;
+    max-width: 900px;
+    backdrop-filter: blur(5px);
+}
+
+h1, h2, h3 {
+    font-family: 'Comic Sans MS', cursive;
+    font-weight: normal;
+}
+
+h1 {
+    color: #E75480;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #E75480;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #FFB6C1;
+    padding-bottom: 8px;
+    display: inline-block;
+}
+
+h3 {
+    color: #DB7093;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.profile-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 5px solid #FFD1DC;
+    object-fit: cover;
+    margin: 15px auto;
+    box-shadow: 0 4px 10px rgba(231, 84, 128, 0.3);
+}
+
+/* Button Styles */
+.btn {
+    background: #FFB6C1;
+    color: #6D4C5A;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(219, 112, 147, 0.2);
+}
+
+.btn:hover {
+    background: #E75480;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(219, 112, 147, 0.3);
+}
+
+/* Section Styles */
+section {
+    margin: 20px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(219, 112, 147, 0.1);
+    width: 85%;
+    max-width: 900px;
+}
+
+/* Card Styles */
+.edu-card, .project-card, .skill-card {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 12px;
+    border-left: 5px solid #FFB6C1;
+    transition: transform 0.3s ease;
+}
+
+.edu-card:hover, .project-card:hover, .skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(219, 112, 147, 0.15);
+}
+
+/* Skills Grid */
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+/* Text Styles */
+p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #6D4C5A;
+}
+
+.tagline {
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 1.2rem;
+    color: #DB7093;
+    margin-bottom: 20px;
+}
+
+/* Footer Styles */
+footer {
+    padding: 20px;
+    background: rgba(255, 182, 193, 0.2);
+    margin-top: auto;
+    width: 100%;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #6D4C5A;
+}
+
+/* Link Styles */
+a {
+    color: #E75480;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #DB7093;
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header, section {
+        width: 90%;
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    .profile-img {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .skills-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Animation */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
+.profile-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 5px solid #FFD1DC;
+    object-fit: cover;
+    margin: 15px auto;
+    box-shadow: 0 4px 10px rgba(231, 84, 128, 0.3);
+    animation: float 3s ease-in-out infinite; /* This makes it move */
+}
+
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0); 
+    }
+    50% { 
+        transform: translateY(-15px); 
+    }
+}
