@@ -3,88 +3,1687 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akshitha Sai Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Arial:wght@400;700&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+    <title>Akshitha Sai | Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #818cf8;
+            --secondary: #ec4899;
+            --accent: #f59e0b;
+            --dark: #1a1a2e;
+            --darker: #0f0f1e;
+            --light: #f8fafc;
+            --gray: #6b7280;
+            --gray-light: #e5e7eb;
+            --white: #ffffff;
+            --success: #10b981;
+            --tripmate-color: #667eea;
+            --fridgepal-color: #f59e0b;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* ============ HEADER & NAVIGATION ============ */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ============ HERO SECTION ============ */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .wave {
+            display: inline-block;
+            animation: waveHand 2s infinite;
+            transform-origin: 70% 70%;
+            vertical-align: middle;
+            margin-left: 10px;
+            font-size: 3.5rem;
+        }
+
+        @keyframes waveHand {
+            0%, 100% { transform: rotate(0deg); }
+            10%, 30% { transform: rotate(14deg); }
+            20%, 40% { transform: rotate(-8deg); }
+            50% { transform: rotate(10deg); }
+            60% { transform: rotate(0deg); }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), #f97316);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(245, 158, 11, 0.4);
+        }
+
+        .btn-secondary {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background: transparent;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .btn-project {
+            /*background: var(--primary);*/
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-project:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            text-transform: capitalize;
+            transition: color 0.3s ease;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-image-container {
+            width: 100%;
+            max-width: 400px;
+            height: 500px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-image-real {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 35px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .profile-image-container::before {
+            content: '';
+            position: absolute;
+            width: 105%;
+            height: 105%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 45px;
+            filter: blur(15px);
+            opacity: 0.6;
+            z-index: 0;
+        }
+
+        /* ============ SECTIONS ============ */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            font-size: 1.25rem;
+            margin-bottom: 4rem;
+        }
+
+        /* ============ ABOUT SECTION ============ */
+        .about {
+            background: var(--light);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            font-size: 1.125rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            color: white;
+        }
+
+        .highlight-box h4 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* ============ SKILLS SECTION ============ */
+        .skills {
+            background: linear-gradient(135deg, var(--dark), var(--darker));
+            color: white;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--primary);
+        }
+
+        /* ============ PROJECTS SECTION ============ */
+        .projects {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+
+        .projects-grid {
+            display: grid;
+            gap: 4rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-hero {
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-content {
+            padding: 3rem;
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .tripmate-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .fridgepal-title {
+            background: linear-gradient(135deg, var(--fridgepal-color), #eab308);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .project-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            font-weight: 500;
+            margin-bottom: 2rem;
+        }
+
+        .project-features {
+            background: linear-gradient(135deg, #f0f4ff 0%, #f8fafc 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            flex-shrink: 0;
+            margin-top: 0.2rem;
+        }
+
+        .tripmate-feature-icon {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .fridgepal-feature-icon {
+            background: linear-gradient(135deg, var(--fridgepal-color), #eab308);
+        }
+
+        .project-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        /* ============ EDUCATION SECTION ============ */
+        .education {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .education-timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            margin-left: 100px;
+        }
+
+        .timeline-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateX(10px);
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: -80px;
+            top: 2.5rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .timeline-title h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .institution {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .period-badge {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .performance {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            background: linear-gradient(135deg, #f0f4ff, #f8fafc);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        /* ============ ACHIEVEMENTS SECTION ============ */
+        .achievements-section {
+            margin-top: 6rem;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .achievement-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .achievement-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .achievement-content {
+            flex: 1;
+        }
+
+        .achievement-text {
+            color: var(--dark);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .certificate-button {
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .certificate-button:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .prize-badge {
+            background: linear-gradient(135deg, var(--accent), #eab308);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        /* ============ MOTION DESIGNS SECTION ============ */
+        .motion-designs {
+            background: linear-gradient(135deg, var(--dark), var(--darker));
+            color: white;
+        }
+
+        .designs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .design-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .design-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        .design-media {
+            width: 100%;
+            height: 250px;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .design-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .design-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .design-info {
+            padding: 1.5rem;
+        }
+
+        .design-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .design-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* ============ HOBBIES SECTION ============ */
+        .hobbies {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .hobby-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .hobby-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .hobby-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hobby-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .hobby-description {
+            color: var(--gray);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            background: var(--darker);
+            color: white;
+            padding: 4rem 0 0;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-brand {
+            max-width: 400px;
+        }
+
+        .brand-name {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .brand-tagline {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .link-group h4 {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .link-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .footer-link {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-credits {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* ============ RESPONSIVE DESIGN ============ */
+        @media (max-width: 1200px) {
+            .hero-container, 
+            .about-content,
+            .footer-main {
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+
+            .wave {
+                font-size: 2.8rem;
+            }
+
+            .profile-image-container {
+                max-width: 320px;
+                height: 400px;
+                margin: 0 auto;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .project-title {
+                font-size: 2rem;
+            }
+
+            .timeline-item {
+                margin-left: 80px;
+            }
+
+            .timeline-icon {
+                left: -60px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-text h1 {
+                font-size: 2.3rem;
+            }
+
+            .wave {
+                font-size: 2.3rem;
+            }
+
+            .profile-image-container {
+                max-width: 280px;
+                height: 350px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .section-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .project-title {
+                font-size: 1.8rem;
+            }
+
+            .cta-buttons,
+            .project-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn-primary,
+            .btn-secondary,
+            .btn-project {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .footer-links {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                margin-left: 0;
+                padding-left: 70px;
+            }
+
+            .timeline-icon {
+                left: 0;
+                top: 2rem;
+            }
+
+            .skills-grid,
+            .designs-grid,
+            .hobbies-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text p {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .project-content {
+                padding: 2rem;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .wave {
+                font-size: 2rem;
+            }
+
+            .profile-image-container {
+                max-width: 250px;
+                height: 312px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .timeline-content {
+                padding: 1.5rem;
+            }
+
+            .project-hero {
+                height: 250px;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header class="header-section">
-        <div class="header-content">
-            <h1>Hi, I'm Akshitha Sai <span class="emoji">✨</span></h1>
-            <p class="tagline">A passionate IT student and aspiring web developer, turning ideas into reality <span class="emoji">♥</span></p>
-            <img src="https://i.postimg.cc/NF5VZ6CQ/Whats-App-Image-2025-04-20-at-22-44-07-f740084f.jpg" alt="Akshitha Sai" class="profile-img">
-        </div>
+    <!-- ============ HEADER ============ -->
+    <header>
+        <nav>
+            <a href="#home" class="logo">Akshitha Sai</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main class="container">
-        <section id="about" class="section-card">
-            <h2>About Me <span class="emoji">🌟</span></h2>
-            <div class="content-card">
-                <p>A motivated B.Tech student in Information Technology, eager to gain practical experience in a dynamic work environment. I aim to apply my technical and analytical skills to contribute effectively to team projects, develop innovative solutions for real-world challenges, and grow as a professional committed to continuous learning.</p>
-                <p><strong>Soft Skills:</strong> Teamwork, Communication, Adaptability.</p>
-                <p><strong>Future Goals:</strong> To build a strong technical foundation, contribute to innovative projects, and gain hands-on experience in software development. I aim to excel in web development while staying open to new technologies and challenges.</p>
-            </div>
-        </section>
-
-        <section id="education" class="section-card">
-            <h2>Education <span class="emoji">🎓</span></h2>
-            <div class="content-card edu-card">
-                <h3>B.Tech in Information Technology</h3>
-                <p>G. Narayanamma Institute of Technology and Science, CGPA: 8.15 <span class="emoji">✨</span></p>
-            </div>
-            <div class="content-card edu-card">
-                <h3>Intermediate (MPC)</h3>
-                <p>Chaitanya Junior College, Hyderabad, GPA: 9.6 <span class="emoji">💡</span></p>
-            </div>
-            <div class="content-card edu-card">
-                <h3>SSC (10th)</h3>
-                <p>St. Joseph Convent High School, Adilabad, GPA: 10.0 <span class="emoji">🌟</span></p>
-            </div>
-        </section>
-
-        <section id="skills" class="section-card">
-            <h2>Technical Skills <span class="emoji">💻</span></h2>
-            <div class="skills-container">
-                <div class="content-card skill-card">
-                    <h3>Programming</h3>
-                    <p>Python, Java (Intermediate) <span class="emoji">✨</span></p>
+    <!-- ============ HERO SECTION ============ -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-text">
+                <h1> Helloo...</h1>
+                <h1>
+                    Akshitha here! <span class="wave">👋🏻</span>
+                </h1>
+                <p><b>
+                    I'm a creative-minded B.Tech student in Information Technology who loves turning ideas into meaningful digital experiences. I blend logical problem-solving with visual and user-centric thinking to build solutions that are not just functional, but impactful.<br><br>
+                    
+                    With a strong foundation in programming, algorithms, and software development, and a growing interest in UI/UX, fintech, AI, and scalable technologies, I aim to create products that solve real-world problems.<br><br>
+                    
+                    I believe great technology isn't just built — it's designed with purpose.<br>
+                    Let's build things that people actually enjoy using.
+                </b></p>
+                
+                <div class="cta-buttons">
+<a href="https://drive.google.com/file/d/1L2H9KLoIzPtEoAK6HX-SbfOY7OREAFw4/preview" class="btn-primary" target="_blank">📄 View Resume</a>
+                    <a href="mailto:akshithasai19@gmail.com" class="btn-secondary">📧 Contact Me</a>
                 </div>
-                <div class="content-card skill-card">
-                    <h3>Web Development</h3>
-                    <p>HTML, CSS, JavaScript <span class="emoji">💡</span></p>
-                </div>
-                <div class="content-card skill-card">
-                    <h3>Database</h3>
-                    <p>SQL, Management <span class="emoji">🌟</span></p>
+                
+                <div class="social-links">
+                    <a href="https://linkedin.com/in/akshitha-sai-1931-babbili" target="_blank">LinkedIn</a>
+                    <a href="https://github.com/Akshitha-Sai" target="_blank">GitHub</a>
+                    <a href="https://www.behance.net/akshithasai" target="_blank">Behance</a>
+                    <a href="https://akshitha-sai.github.io/TripMate/" target="_blank">TripMate</a>
+                    <a href="https://akshitha-sai.github.io/fridge-pal/" target="_blank">FridgePal</a>
                 </div>
             </div>
-        </section>
-
-        <section id="projects" class="section-card">
-            <h2>Projects <span class="emoji">🚀</span></h2>
-            <div class="content-card project-card">
-                <h3>Smart Grocery Manager</h3>
-                <p>Developed during BITS Hyderabad TechXcelerate Hackathon - An innovative app helping users track grocery expiry dates and minimize food waste through timely reminders.</p>
+            
+            <div class="hero-image">
+                <div class="profile-image-container">
+<!-- Try one of these for the image -->
+<img src="https://drive.google.com/thumbnail?id=1mXl1VqBdZHossj9naDvplEElTk8S8YcY&sz=w1000" alt="Akshitha Sai" class="profile-image-real">
+                </div>
             </div>
-            <div class="content-card project-card">
-                <h3>TripMate AI</h3>
-                <p>An AI-powered travel planning assistant that helps users create personalized trip itineraries and explore destinations efficiently.</p>
-            </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="contact" class="section-card">
-            <h2>Get In Touch <span class="emoji">📧</span></h2>
-            <div class="content-card">
-                <p>Email: akshithasai19@gmail.com</p>
-                <p>Phone: +91-8918910174</p>
-                <p>LinkedIn: <a href="https://linkedin.com/in/akshitha-sai-1931-babbili" target="_blank">Connect on LinkedIn</a> <span class="emoji">✨</span></p>
+    <!-- ============ ABOUT SECTION ============ -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <p class="section-subtitle">Get to know me better</p>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Building the Future with Code & Creativity</h3>
+                    <p>I am a dedicated IT student passionate about creating innovative digital solutions through intuitive design and robust development. My focus lies in creating user-centered digital experiences that solve real-world problems.</p>
+                    <p>With a strong foundation in both frontend and UI/UX design, I specialize in creating interfaces that are not just beautiful but also highly functional and accessible. Every project I undertake is an opportunity to blend creativity with technology.</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>Professional Focus</h4>
+                    <p>User Experience (UX) Design, Human-Centered Design, UI Development, and Digital Innovation. Passionate about creating impactful digital solutions that enhance customer experiences.</p>
+                    
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">2+</div>
+                            <div class="stat-label">Projects Completed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">5+</div>
+                            <div class="stat-label">Certifications</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">4th</div>
+                            <div class="stat-label">Hackathon Rank</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Dedication</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <footer class="footer-section">
-        <button class="btn" onclick="window.open('https://drive.google.com/file/d/1J3hssoQ90Y6cOFR02phL0BgIQ5w367ID/view?usp=sharing')">Certified</button>
-        <p class="copyright">© 2023 Akshitha Sai. All rights reserved.</p>
+    <!-- ============ SKILLS SECTION ============ -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <p class="section-subtitle">Technologies and tools I work with</p>
+            
+            <div class="skills-grid" id="skillsGrid">
+                <!-- Skills will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ PROJECTS SECTION ============ -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <p class="section-subtitle">Showcasing my best work and achievements</p>
+            
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Projects will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ MOTION DESIGNS SECTION ============ -->
+    <section id="motion-designs" class="motion-designs">
+        <div class="container">
+            <h2 class="section-title">Motion Designs & Creative Work</h2>
+            <p class="section-subtitle">Exploring creativity through animation and design</p>
+            
+            <div class="designs-grid" id="designsGrid">
+                <!-- Designs will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ HOBBIES SECTION ============ -->
+    <section class="hobbies">
+        <div class="container">
+            <h2 class="section-title">Interests & Hobbies</h2>
+            <p class="section-subtitle">Beyond code and design</p>
+            
+            <div class="hobbies-grid" id="hobbiesGrid">
+                <!-- Hobbies will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ EDUCATION SECTION ============ -->
+    <section id="education" class="education">
+        <div class="container">
+            <h2 class="section-title">Education & Journey</h2>
+            <p class="section-subtitle">My academic path and learning milestones</p>
+
+            <div class="education-timeline" id="educationTimeline">
+                <!-- Education will be populated by JavaScript -->
+            </div>
+
+            <!-- Achievements Section -->
+            <div id = "achievements" class="achievements-section">
+                <h2 class="section-title">Achievements & Certifications</h2>
+                <p class="section-subtitle">Recognitions and learning accomplishments</p>
+
+                <div class="achievements-grid" id="achievementsGrid">
+                    <!-- Achievements will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="brand-name">Akshitha Sai</div>
+                    <div class="brand-tagline">IT Student & Software Developer</div>
+                    <p style="color: rgba(255, 255, 255, 0.7); line-height: 1.6; margin-bottom: 2rem;">Creating innovative digital solutions through modern technology, creative design, and user-centered approach.</p>
+                    
+                    <div class="link-list" style="gap: 1rem;">
+                        <a href="mailto:akshithasai19@gmail.com" class="footer-link">📧 akshithasai19@gmail.com</a>
+                        <a href="https://linkedin.com/in/akshitha-sai-1931-babbili" target="_blank" class="footer-link">🔗 LinkedIn Profile</a>
+                        <a href="https://github.com/Akshitha-Sai" target="_blank" class="footer-link">🐱 GitHub Profile</a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>Quick Links</h4>
+                        <div class="link-list">
+                            <a href="#home" class="footer-link">Home</a>
+                            <a href="#about" class="footer-link">About</a>
+                            <a href="#skills" class="footer-link">Skills</a>
+                            <a href="#projects" class="footer-link">Projects</a>
+                        </div>
+                    </div>
+
+                    <div class="link-group">
+                        <h4>Social</h4>
+                        <div class="link-list">
+                            <a href="https://linkedin.com/in/akshitha-sai-1931-babbili" target="_blank" class="footer-link">LinkedIn</a>
+                            <a href="https://github.com/Akshitha-Sai" target="_blank" class="footer-link">GitHub</a>
+                            <a href="https://www.behance.net/akshithasai" target="_blank" class="footer-link">Behance</a>
+                            <a href="https://dance-rigor-12012856.figma.site/" target="_blank" class="footer-link">Figma</a>
+                        </div>
+                    </div>
+
+                    <div class="link-group">
+                        <h4>Projects</h4>
+                        <div class="link-list">
+                            <a href="https://akshitha-sai.github.io/TripMate/" target="_blank" class="footer-link">TripMate</a>
+                            <a href="https://akshitha-sai.github.io/fridge-pal/" target="_blank" class="footer-link">FridgePal</a>
+                            <a href="https://preview-ca57bddf--stellar-drift-escape.lovable.app/" target="_blank" class="footer-link">StellarDrift</a>
+                            <a href="#motion-designs" class="footer-link">Motion Designs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-credits">
+                    <p>&copy; 2025 Akshitha Sai. All rights reserved.</p>
+                    <p style="font-size: 0.85rem; margin-top: 0.5rem;">Crafted with ❤️</p>
+                </div>
+            </div>
+        </div>
     </footer>
+
+    <!-- ============ JAVASCRIPT ============ -->
+    <script>
+        // Dynamic Data
+        const portfolioData = {
+            skills: [
+                {
+                    category: "Frontend Development",
+                    icon: "🎨",
+                    technologies: ["React", "JavaScript", "HTML/CSS", "Responsive Design", "Tailwind CSS"]
+                },
+                {
+                    category: "UI/UX Design",
+                    icon: "✨",
+                    technologies: ["Figma", "Wireframing", "Prototyping", "User Research", "Human-Centered Design"]
+                },
+                {
+                    category: "Programming",
+                    icon: "💻",
+                    technologies: ["Java", "Python", "C", "Data Structures", "Algorithms"]
+                },
+                {
+                    category: "Tools & Platforms",
+                    icon: "🛠️",
+                    technologies: ["GitHub", "VS Code", "REST APIs", "Figma", "SQL"]
+                }
+            ],
+           projects: [
+    {
+        title: "TripMate ✈️",
+        subtitle: "Smart Travel Planner & AI Assistant",
+        description: "An intelligent travel planning application that generates personalized itineraries using AI. Features include smart destination recommendations, budget tracking, and collaborative planning tools.",
+        features: ["AI-Powered Itineraries", "Budget Management", "Real-time Collaboration", "Travel Recommendations"],
+        demoLink: "https://akshitha-sai.github.io/TripMate/",
+        projectLink: "https://github.com/Akshitha-Sai/TripMate",
+        colorClass: "tripmate-title",
+        image: "tripmate01.png"  // Add image path here
+    },
+    {
+        title: "FridgePal 🧊",
+        subtitle: "Smart Kitchen Management System",
+        description: "A comprehensive kitchen management app that tracks ingredients, suggests recipes based on available items, and helps reduce food waste through smart notifications.",
+        features: ["Inventory Tracking", "Recipe Suggestions", "Expiry Alerts", "Shopping Lists"],
+        demoLink: "https://akshitha-sai.github.io/fridge-pal/",
+        projectLink: "https://github.com/Akshitha-Sai/fridge-pal",
+        colorClass: "fridgepal-title",
+        image: "FridgePal.png"  // Add image path here
+    }
+],
+            education: [
+                {
+                    degree: "Bachelor of Technology in Information Technology",
+                    institution: "G. Narayanamma Institute of Technology and Science, Hyderabad",
+                    period: "2023 – 2027",
+                    details: "CGPA: 8.14 (as of 2025)"
+                },
+                {
+                    degree: "Intermediate (MPC)",
+                    institution: "Sri Chaitanya Junior College, Hyderabad",
+                    period: "2020 – 2022",
+                    details: "GPA: 9.45 (Top 10% of class)"
+                }
+            ],
+            achievements: [
+                {
+                    text: "4th Place – Hackathon (Stellar Drift): Developed an interactive game using Vibe coding techniques",
+                    gameLink: "https://preview-ca57bddf--stellar-drift-escape.lovable.app/",
+                    isPrize: true
+                },
+                {
+                    text: "Participated in AI Workshop & Hackathon – BITS Hyderabad",
+                    certificateLink: "https://drive.google.com/file/d/1fOmZRX4CeoKAecRRnNfLvQ3CPranfKn8/view"
+                },
+                {
+                    text: "5-Day Internship on Leadership Training – Sparks Team and School of Leadership",
+                    certificateLink: "https://drive.google.com/file/d/1J3hssoQ90Y6cOFR02phL0BgIQ5w367ID/view"
+                },
+                {
+                    text: "Introduction to Generative AI Course – GeeksforGeeks",
+                    certificateLink: "https://media.geeksforgeeks.org/courses/certificates/7d8d0982a02b774f48d8938de46f520d.pdf"
+                },
+                {
+                    text: "Figma Makethon – Participated in a UI/UX design hackathon; built interactive prototype",
+                    certificateLink: "https://dance-rigor-12012856.figma.site/"
+                },
+                {
+                    text: "MERN Stack Workshop & Hackathon – Eshway",
+                    certificateLink: "#"
+                }
+            ],
+            hobbies: [
+                {
+                    icon: "🎨",
+                    title: "UI/UX Design",
+                    description: "Creating intuitive and beautiful user interfaces that enhance user experience"
+                },
+                {
+                    icon: "✈️",
+                    title: "Travel Planning",
+                    description: "Exploring new destinations and creating memorable travel experiences"
+                },
+                {
+                    icon: "🎵",
+                    title: "Music & Rhythm",
+                    description: "Finding inspiration in music and rhythmic patterns for creative projects"
+                },
+                {
+                    icon: "📚",
+                    title: "Continuous Learning",
+                    description: "Always exploring new technologies and design trends in the digital space"
+                }
+            ],
+            designs: [
+                {
+                    title: "Group Animation",
+                    description: "Dynamic motion design showcasing group coordination and teamwork",
+                    video: "Group.gif"
+                },
+                {
+                    title: "Mega Sale Promotion",
+                    description: "Promotional video for mega sale event with engaging visuals",
+                    video: "MEGA SALE.mp4"
+                },
+                {
+                    title: "Travel Animation",
+                    description: "Dynamic motion design showcasing travel experiences and destinations",
+                    video: "travel.mp4"
+                },
+                {
+                    title: "Name Animation",
+                    description: "Creative animation featuring name reveal with smooth transitions",
+                    video: "myname.mp4"
+                },
+                {
+                    title: "Flight Animation",
+                    description: "Smooth flying animation with creative visual effects",
+                    video: "flyfly.mp4"
+                }
+            ]
+        };
+
+        // Populate Skills
+        function populateSkills() {
+            const skillsGrid = document.getElementById('skillsGrid');
+            skillsGrid.innerHTML = portfolioData.skills.map(skill => `
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <div class="skill-icon">${skill.icon}</div>
+                        <h3>${skill.category}</h3>
+                    </div>
+                    <div class="skill-tags">
+                        ${skill.technologies.map(tech => `<span class="skill-tag">${tech}</span>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+      // Populate Projects
+function populateProjects() {
+    const projectsGrid = document.getElementById('projectsGrid');
+    projectsGrid.innerHTML = portfolioData.projects.map(project => `
+        <div class="project-card">
+            <div class="project-hero" style="background: ${project.colorClass.includes('tripmate') ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : 'linear-gradient(135deg, var(--fridgepal-color), #eab308)'}">
+                <img src="${project.image}" alt="${project.title}" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="project-content">
+                <h2 class="project-title ${project.colorClass}">${project.title}</h2>
+                <p class="project-subtitle">${project.subtitle}</p>
+                <p style="color: var(--gray); margin-bottom: 2rem; font-size: 1.05rem;">${project.description}</p>
+                <div class="project-features">
+                    <div class="features-grid">
+                        ${project.features.map(feature => `
+                            <div class="feature-item">
+                                <div class="feature-icon ${project.colorClass.includes('tripmate') ? 'tripmate-feature-icon' : 'fridgepal-feature-icon'}"></div>
+                                <div>${feature}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                <div class="project-buttons">
+                    <a href="${project.projectLink}" class="btn-project" target="_blank">🌐 View Project</a>
+                    <a href="${project.demoLink}" class="btn-project" target="_blank">🚀 View Demo</a>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+        // Populate Education
+        function populateEducation() {
+            const timeline = document.getElementById('educationTimeline');
+            timeline.innerHTML = portfolioData.education.map(edu => `
+                <div class="timeline-item">
+                    <div class="timeline-icon">🎓</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">
+                            <h3>${edu.degree}</h3>
+                            <p class="institution">${edu.institution}</p>
+                        </div>
+                        <div class="period-badge" style="margin-top: 1rem; display: inline-block;">${edu.period}</div>
+                        <div class="performance">${edu.details}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Populate Achievements
+function populateAchievements() {
+    const grid = document.getElementById('achievementsGrid');
+    grid.innerHTML = portfolioData.achievements.map(achievement => `
+        <div class="achievement-card">
+            <div class="achievement-icon">${achievement.isPrize ? '🏆' : '📜'}</div>
+            <div class="achievement-content">
+                <p class="achievement-text">${achievement.text}</p>
+
+                ${achievement.isPrize ? '<div class="prize-badge">🎉Price: INR 2000</div>' : ''}
+
+                <a href="${achievement.isPrize ? achievement.gameLink : achievement.certificateLink}"
+                   class="certificate-button"
+                   target="_blank">
+                    ${achievement.isPrize ? '🎮 Play Game' : '📄 View Certificate'}
+                </a>
+            </div>
+        </div>
+    `).join('');
+}
+
+
+        // Populate Hobbies
+        function populateHobbies() {
+            const grid = document.getElementById('hobbiesGrid');
+            grid.innerHTML = portfolioData.hobbies.map(hobby => `
+                <div class="hobby-card">
+                    <div class="hobby-icon">${hobby.icon}</div>
+                    <h3 class="hobby-title">${hobby.title}</h3>
+                    <p class="hobby-description">${hobby.description}</p>
+                </div>
+            `).join('');
+        }
+
+        // Populate Designs
+        function populateDesigns() {
+            const grid = document.getElementById('designsGrid');
+            grid.innerHTML = portfolioData.designs.map(design => `
+                <div class="design-card">
+                    <div class="design-media">
+                        ${design.video.endsWith('.gif') ? 
+                            `<img src="${design.video}" alt="${design.title}">` : 
+                            `<video autoplay loop muted playsinline>
+                                <source src="${design.video}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>`
+                        }
+                    </div>
+                    <div class="design-info">
+                        <h3 class="design-title">${design.title}</h3>
+                        <p class="design-description">${design.description}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // Initialize all sections
+        function initializePortfolio() {
+            populateSkills();
+            populateProjects();
+            populateEducation();
+            populateAchievements();
+            populateHobbies();
+            populateDesigns();
+        }
+
+        // Run on page load
+        document.addEventListener('DOMContentLoaded', initializePortfolio);
+
+        // Add scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.skill-card, .project-card, .achievement-card, .hobby-card, .design-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Mobile menu toggle (optional enhancement)
+        const navToggle = document.createElement('button');
+        navToggle.innerHTML = '☰';
+        navToggle.style.cssText = `
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        `;
+        
+        document.querySelector('nav').appendChild(navToggle);
+        
+        // Toggle mobile menu
+        navToggle.addEventListener('click', () => {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // Show/hide mobile menu based on screen size
+        function handleResponsive() {
+            const navLinks = document.querySelector('.nav-links');
+            if (window.innerWidth <= 768) {
+                navToggle.style.display = 'block';
+                navLinks.style.display = 'none';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'rgba(255, 255, 255, 0.98)';
+                navLinks.style.backdropFilter = 'blur(20px)';
+                navLinks.style.padding = '1rem';
+                navLinks.style.gap = '1rem';
+            } else {
+                navToggle.style.display = 'none';
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'row';
+                navLinks.style.position = 'static';
+                navLinks.style.background = 'transparent';
+                navLinks.style.padding = '0';
+            }
+        }
+        
+        window.addEventListener('resize', handleResponsive);
+        handleResponsive();
+    </script>
 </body>
 </html>
